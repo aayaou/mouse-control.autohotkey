@@ -64,6 +64,11 @@ MoveCursor() {
   }
   
   If (NORMAL_QUICK) {
+    ; caps_down := GetKeyState("Capslock", "P")
+    ; l_shift_down := GetKeyState("LShift", "P")
+    ; IF ((caps_down == 0) && (l_shift_down == 0)) {
+    ;   EnterInsertMode()
+    ; }
     caps_down := GetKeyState("Capslock", "P")
     IF (caps_down == 0) {
       EnterInsertMode()
@@ -419,7 +424,7 @@ Insert:: EnterInsertMode()
 #If (INSERT_MODE)
   ; Normal (Quick) Mode
 #If (INSERT_MODE && INSERT_QUICK == false)
-  Capslock:: EnterNormalMode(true)
+  LShift & Capslock:: EnterNormalMode(true)
   +Capslock:: EnterNormalMode()
 #If (INSERT_MODE && INSERT_QUICK)
   ~Enter:: EnterNormalMode()
